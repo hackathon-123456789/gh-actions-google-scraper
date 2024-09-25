@@ -13,6 +13,12 @@ FAILED_DUE_TO_NOT_SUBSCRIBED = "FAILED_DUE_TO_NOT_SUBSCRIBED"
 FAILED_DUE_TO_NO_KEY = "FAILED_DUE_TO_NO_KEY"
 FAILED_DUE_TO_UNKNOWN_ERROR = "FAILED_DUE_TO_UNKNOWN_ERROR"
 
+PROTOCOL = "https"
+
+HOST = "google-scraper.p.rapidapi.com"
+API_PATH = "search/"
+HOST_URL = f"{PROTOCOL}://{HOST}/{API_PATH}"
+
 def update_credits():
     credits_used  = bt.LocalStorage.get_item("credits_used", 0)
     bt.LocalStorage.set_item("credits_used", credits_used + 1)
@@ -37,7 +43,7 @@ def do_request(data, retry_count=3):
 
     headers = {
         "X-RapidAPI-Key": key,
-    	"X-RapidAPI-Host": "google-scraper.p.rapidapi.com"
+    	"X-RapidAPI-Host": HOST
     }
 
     
@@ -100,7 +106,7 @@ def search(_, data, metadata):
                         "error":FAILED_DUE_TO_NO_KEY
                     })
     max_items = data['max']
-    url = "https://google-scraper.p.rapidapi.com/search/"
+    url = HOST_URL
     qp = {"query": data['query']}
     params = {**qp, 'link':cl.join_link(url, query_params=qp)}
 
