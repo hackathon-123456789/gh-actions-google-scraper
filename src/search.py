@@ -5,6 +5,7 @@ from botasaurus import cl
 from time import sleep
 from botasaurus import *
 from .utils import   default_request_options
+from botasaurus.request_decorator import request
 import requests
 
 FAILED_DUE_TO_CREDITS_EXHAUSTED = "FAILED_DUE_TO_CREDITS_EXHAUSTED"
